@@ -1,0 +1,155 @@
+.slim {
+  font-family: din-2014-narrow, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  color: #6028ff;
+  margin: 0;
+}
+
+.bold {
+  font-size: 3.5rem;
+}
+
+.page-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-container {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.header-container > h1 {
+  position: absolute;
+}
+
+.container {
+  flex: 1;
+  margin-top: 50px;
+}
+
+.flower {
+  position: absolute;
+  right: -100px;
+  bottom: -150px;
+  min-width: 600px;
+  z-index: -1;
+}
+
+.slides-container {
+  flex: 1;
+  position: relative;
+  overflow: visible;
+}
+
+.slides-container > div {
+  /* transform: rotate(-2deg); */
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.95);
+  border: 5px solid #212121;
+  /* box-sizing: border-box;
+  box-shadow: 7px 5px 0px #6028ff; */
+  border-radius: 10px;
+  padding: 10px 20px;
+  min-height: 50px;
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 30px;
+  font-weight: 700;
+  font-size: 16pt;
+}
+
+.btn::after {
+  content: "";
+  width: 105%;
+  height: 115%;
+  background-color: #6028ff;
+  border-radius: 10px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: -1;
+  transition: 0.1s ease all;
+}
+
+.btn:hover::after {
+  transition: 0.1s ease all;
+  top: 0px;
+  left: 0px;
+}
+
+.circle {
+  background-color: #6028ff;
+  transition: 0.5s ease all;
+  z-index: 2;
+  border-radius: 100%;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  /* left: -500px; */
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.circle-closed {
+  transform: translateX(-50%) translateY(-50%) scale(0);
+}
+
+.circle-open {
+  transform: translateX(-50%) translateY(-50%) scale(60);
+}
+
+.spinner {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.app-overlay {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation-name: fade;
+  animation-duration: 0.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.app-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.slide {
+  position: absolute;
+  opacity: 0;
+  transform-origin: 120% 140%;
+  transform: rotate(180deg);
+  right: -10%;
+  min-width: 100%;
+}
+
+@keyframes fade {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
