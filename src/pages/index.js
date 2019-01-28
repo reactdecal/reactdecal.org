@@ -7,6 +7,9 @@ import SEO from "../components/seo";
 import Slide from "../components/slide";
 import AnimatedHeader from "../components/AnimatedHeader";
 
+import SocialCardSlide from "../components/SocialCardSlide";
+import WindowDrawingSlide from "../components/WindowDrawingSlide";
+
 import styles from "./index.module.css";
 import flower from "../images/flower.svg";
 
@@ -16,10 +19,10 @@ const LINES = [
   "React and the world of JavaScript",
 ];
 
-const SLIDES = [<h1>Hi there</h1>, <h1>Hi there</h1>, <h1>Hi there</h1>];
+const SLIDES = [<SocialCardSlide />, <WindowDrawingSlide />, <h1>Hi there</h1>];
 
 const DURATION = 700;
-const DELAY = 3000;
+const DELAY = 6000;
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -138,6 +141,7 @@ class IndexPage extends React.Component {
                 className={`${styles.slide} ${
                   index <= this.state.animIndex ? "slide-open" : ""
                 }`}
+                open={index <= this.state.animIndex}
               >
                 {component}
               </Slide>

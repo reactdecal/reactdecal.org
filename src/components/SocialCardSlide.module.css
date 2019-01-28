@@ -1,0 +1,23 @@
+.animated {
+  opacity: 1;
+}
+
+.profile-picture {
+  transform: translate(25%, 15%);
+}
+
+.follow-button {
+  transform: translate(-25%, -10%);
+}
+
+.username {
+  transform: translate(-20%, -40%);
+}
+
+.likes {
+  transform: translate(45%, 0%);
+}
+
+.followers {
+  transform: translate(30%, 35%);
+}

@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./slide.module.css";
 
-const Slide = ({ children, ...props }) => (
+const Slide = ({ children, open, ...props }) => (
   <div {...props} className={`${styles.slide} ${props.className || ""}`}>
-    {children}
+    {React.cloneElement(children, { open })}
   </div>
 );
 
