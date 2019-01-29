@@ -17,7 +17,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <div style={{ overflow: "hidden", minHeight: "100vh" }}>
+      <div style={{ width: "100vw", overflowX: "hidden", minHeight: "100vh" }}>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div
           style={{
@@ -28,9 +28,6 @@ const Layout = ({ children }) => (
           }}
         >
           {children}
-          <footer>
-            All React DeCal content is licensed under the MIT license.
-          </footer>
         </div>
       </div>
     )}

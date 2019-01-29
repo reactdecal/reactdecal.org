@@ -9,3 +9,9 @@
 .logo {
   height: 100%;
 }
+
+@media only screen and (max-width: 840px) {
+  .container {
+    height: 60px;
+  }
+}

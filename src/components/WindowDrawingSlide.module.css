@@ -1,3 +1,4 @@
 .window {
-  width: 95%;
+  /* width: 95%; */
+  flex: 1 1;
 }

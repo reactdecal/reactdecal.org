@@ -27,6 +27,10 @@ export default class AnimatedHeader extends React.Component {
   }
 
   render() {
-    return <h1 ref={this.ref} {...this.props} />;
+    const { wrapHeader, ...props } = this.props;
+    if (wrapHeader) {
+      return <h1 ref={this.ref} {...props} />;
+    }
+    return <div ref={this.ref} {...props} />;
   }
 }

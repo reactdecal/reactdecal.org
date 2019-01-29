@@ -28,7 +28,7 @@
 }
 
 .container {
-  flex: 1;
+  flex: 1 1 400px;
   margin-top: 50px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .slides-container {
-  flex: 1;
+  flex: 1 1 400px;
   position: relative;
   overflow: visible;
 }
@@ -140,6 +140,20 @@
   transform: rotate(180deg);
   right: -10%;
   min-width: 100%;
+  min-height: 330px;
+  /* max-width: 400px; */
+}
+
+.code-slide {
+  background-color: #1d1f21;
+}
+
+.editor {
+  width: 400px;
+}
+
+.editor-container {
+  max-width: 100%;
 }
 
 @keyframes fade {
@@ -151,5 +165,38 @@
   100% {
     transform: translateY(0px);
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 840px) {
+  .flower {
+    bottom: -500px;
+  }
+
+  .bold {
+    font-size: 3rem;
+  }
+
+  .container {
+    margin-top: 0;
+  }
+
+  .header-container {
+    height: 160px;
+  }
+
+  .editor {
+    max-width: 100%;
+  }
+
+  .slide {
+    max-width: 90%;
+    overflow: hidden;
+    max-height: 200px;
+    /* min-height: 470px; */
+  }
+
+  .slides-container {
+    left: -5%;
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Transition } from "react-transition-group";
 import anime from "animejs";
+import { LiveProvider, LivePreview, LiveEditor, LiveError } from "react-live";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -11,18 +12,36 @@ import SocialCardSlide from "../components/SocialCardSlide";
 import WindowDrawingSlide from "../components/WindowDrawingSlide";
 
 import styles from "./index.module.css";
+import "./prism.theme.css";
 import flower from "../images/flower.svg";
 
 const LINES = [
   "component driven development",
-  "front end engineering",
+  "front end engineering tools",
   "React and the world of JavaScript",
 ];
+const LIVE_CODE = `
+class Header extends React.Component {
+  render() {
+    /* Your code here! ✨*/
+    return <h1 className="${styles.bold}">
+      ${LINES[LINES.length - 1]}
+    </h1>
+  }
+}
+`;
 
-const SLIDES = [<SocialCardSlide />, <WindowDrawingSlide />, <h1>Hi there</h1>];
+const SLIDES = [
+  <SocialCardSlide />,
+  <WindowDrawingSlide />,
+  <div className={styles.editorContainer}>
+    <LiveError />
+    <LiveEditor className={styles.editor} />
+  </div>,
+];
 
 const DURATION = 700;
-const DELAY = 6000;
+const DELAYS = [4000, 7000, 5000];
 
 class IndexPage extends React.Component {
   constructor(props) {
@@ -36,18 +55,23 @@ class IndexPage extends React.Component {
 
   componentDidMount() {
     this.updateSlides();
-    this.animTimer = setInterval(() => {
+    this.animTimer = setTimeout(() => {
       this.advanceAnimation();
-    }, DELAY);
+    }, DELAYS[this.state.animIndex]);
   }
 
   advanceAnimation() {
     if (this.state.animIndex >= LINES.length - 1) {
-      return clearInterval(this.animTimer);
+      return clearTimeout(this.animTimer);
     }
     this.setState(
       prevState => ({ animIndex: prevState.animIndex + 1 }),
-      () => this.updateSlides()
+      () => {
+        this.animTimer = setTimeout(() => {
+          this.advanceAnimation();
+        }, DELAYS[this.state.animIndex]);
+        this.updateSlides();
+      }
     );
   }
 
@@ -100,54 +124,58 @@ class IndexPage extends React.Component {
             </a>
           </div>
         ) : null}
-        <div className={styles.pageContainer}>
-          <div className={styles.container}>
-            <h3 className={styles.slim}>UC Berkeley's first course for</h3>
-            <div className={styles.headerContainer}>
-              {LINES.map(header => (
-                <Transition
-                  key={header}
-                  in={LINES[this.state.animIndex] === header}
-                  timeout={DURATION}
-                  unmountOnExit
+        <LiveProvider code={LIVE_CODE}>
+          <div className={styles.pageContainer}>
+            <div className={styles.container}>
+              <h3 className={styles.slim}>UC Berkeley's first course for</h3>
+              <div className={styles.headerContainer}>
+                {LINES.map((header, i) => (
+                  <Transition
+                    key={header}
+                    in={LINES[this.state.animIndex] === header}
+                    timeout={DURATION}
+                    unmountOnExit
+                  >
+                    {status => (
+                      <AnimatedHeader
+                        className={styles.bold}
+                        status={status}
+                        duration={DURATION}
+                        wrapHeader={i < LINES.length - 1}
+                      >
+                        {i < LINES.length - 1 ? header : <LivePreview />}
+                      </AnimatedHeader>
+                    )}
+                  </Transition>
+                ))}
+              </div>
+              <a className={styles.btn} onClick={e => this.showApp(e)}>
+                Apply now
+                <div
+                  className={`${styles.circle} ${
+                    this.state.appOpen ? styles.circleOpen : styles.circleClosed
+                  }`}
+                />
+              </a>
+            </div>
+            <div className={styles.slidesContainer}>
+              <img alt="" src={flower} className={styles.flower} />
+              {SLIDES.map((component, index) => (
+                /* OK to use index here: list is stable */
+                <Slide
+                  key={index}
+                  className={`${styles.slide} ${
+                    index <= this.state.animIndex ? "slide-open" : ""
+                  }
+                  ${index === SLIDES.length - 1 ? styles.codeSlide : ""}`}
+                  open={index <= this.state.animIndex}
                 >
-                  {status => (
-                    <AnimatedHeader
-                      className={styles.bold}
-                      status={status}
-                      duration={DURATION}
-                    >
-                      {header}
-                    </AnimatedHeader>
-                  )}
-                </Transition>
+                  {component}
+                </Slide>
               ))}
             </div>
-            <a className={styles.btn} onClick={e => this.showApp(e)}>
-              Apply now
-              <div
-                className={`${styles.circle} ${
-                  this.state.appOpen ? styles.circleOpen : styles.circleClosed
-                }`}
-              />
-            </a>
           </div>
-          <div className={styles.slidesContainer}>
-            <img alt="" src={flower} className={styles.flower} />
-            {SLIDES.map((component, index) => (
-              /* OK to use index here: list is stable */
-              <Slide
-                key={index}
-                className={`${styles.slide} ${
-                  index <= this.state.animIndex ? "slide-open" : ""
-                }`}
-                open={index <= this.state.animIndex}
-              >
-                {component}
-              </Slide>
-            ))}
-          </div>
-        </div>
+        </LiveProvider>
       </Layout>
     );
   }
