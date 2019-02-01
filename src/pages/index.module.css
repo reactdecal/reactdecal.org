@@ -35,13 +35,14 @@
 .flower {
   position: absolute;
   right: -100px;
-  bottom: -150px;
+  /* bottom: -150px; */
   min-width: 600px;
   z-index: -1;
 }
 
 .slides-container {
   flex: 1 1 400px;
+  min-height: 500px;
   position: relative;
   overflow: visible;
 }
@@ -149,11 +150,87 @@
 }
 
 .editor {
-  width: 400px;
+  max-width: 400px;
 }
 
 .editor-container {
-  max-width: 100%;
+  min-width: 100%;
+}
+
+.about-container {
+  display: flex;
+  margin-top: 5%;
+  position: relative;
+}
+
+.about-container h1 {
+  font-family: din-2014-narrow, sans-serif;
+  font-size: 6rem;
+  font-weight: 300;
+  flex: 1;
+  letter-spacing: -5px;
+}
+
+.about-section {
+  margin-top: 20%;
+  flex: 2;
+}
+
+.about-section p {
+  font-size: 1.5rem;
+}
+
+.about-flower {
+  position: absolute;
+  bottom: -20%;
+  left: -20%;
+  z-index: -1;
+  width: 450px;
+}
+
+.class-container {
+  color: white;
+  background-color: black;
+  width: 100vw;
+  display: flex;
+}
+
+.class-section {
+  width: 100%;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.module-list {
+  padding: 0 20px;
+}
+
+.class-section h1 {
+  text-align: center;
+  max-width: 300px;
+  font-family: din-2014-narrow, sans-serif;
+  font-weight: 300;
+}
+
+.apply-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  width: 100%;
+}
+
+.apply-container p {
+  margin-bottom: 0;
+}
+
+.apply-container a {
+  margin-top: 30px;
 }
 
 @keyframes fade {
@@ -169,8 +246,17 @@
 }
 
 @media only screen and (max-width: 840px) {
+  .page-container {
+    justify-content: center;
+  }
+
   .flower {
-    bottom: -500px;
+    bottom: -50px;
+    width: 50%;
+  }
+
+  .about-flower {
+    left: -50%;
   }
 
   .bold {
@@ -179,10 +265,16 @@
 
   .container {
     margin-top: 0;
+    max-width: 370px;
+    align-items: center;
+  }
+
+  .container h1 {
+    max-width: 350px;
   }
 
   .header-container {
-    height: 160px;
+    height: 200px;
   }
 
   .editor {
@@ -190,13 +282,35 @@
   }
 
   .slide {
-    max-width: 90%;
-    overflow: hidden;
+    min-width: 0px;
+    width: 70%;
     max-height: 200px;
-    /* min-height: 470px; */
   }
 
   .slides-container {
-    left: -5%;
+    left: -20%;
+  }
+
+  .about-container {
+    /* margin-top: 500px; */
+    flex-wrap: wrap;
+  }
+
+  .about-section {
+    flex: 2 1 100%;
+    margin-top: 20px;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .slides-container {
+    left: -10%;
+  }
+  .slide {
+    width: 90%;
+  }
+
+  .about-container {
+    margin-top: 100px;
   }
 }

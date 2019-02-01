@@ -17,7 +17,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <div style={{ width: "100vw", overflowX: "hidden", minHeight: "100vh" }}>
+      <div style={{ width: "100vw", minHeight: "100vh" }}>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div
           style={{
