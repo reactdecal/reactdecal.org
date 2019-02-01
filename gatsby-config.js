@@ -1,7 +1,9 @@
 module.exports = {
   siteMetadata: {
     title: `React DeCal`,
-    description: `The React DeCal is UC Berkeley's first course on React.`,
+    description: `Apply now to the first-ever React DeCal! \
+    Learn how to build powerful apps with the most popular library \
+    for the front-end Web.`,
     author: "",
   },
   plugins: [

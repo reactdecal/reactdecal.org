@@ -103,7 +103,7 @@ class IndexPage extends React.Component {
     return (
       <>
         <Layout>
-          <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
+          <SEO title="The React DeCal" />
           {this.state.appOpen ? (
             <div className={styles.appOverlay}>
               <Slide
